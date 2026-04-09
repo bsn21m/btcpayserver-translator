@@ -1051,7 +1051,7 @@
   "Mine": "Rudarenje",
   "Mine to test processing and settlement": "Izrudarite za testiranje obrade i poravnanja",
   "Minimum acceptable expiration time for BOLT11 for refunds": "Minimalno dozvoljeno vreme isteka BOLT11 fakture za refundaciju",
-  "Minimum amount of sats to allow to be sent to this ln address": "Minimalni broj satošija koji se mogu poslati na ovu ln adresu",
+  "Minimum amount of sats to allow to be sent to this ln address": "Minimalni broj satošija koji se mogu poslati na ovu lightning adresu",
   "Minimum amount:": "Minimalni iznos:",
   "minutes": "minuta",
   "Mirror of": "Ogledalo od",
