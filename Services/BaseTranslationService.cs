@@ -45,12 +45,18 @@ public class BaseTranslationService : ITranslationService
     public async Task<TranslationResponse> TranslateAsync(TranslationRequest request)
     {
         var maxRetries = 3;
+        // Only switch into strict-retry prompting when the *prior* attempt produced an LLM
+        // answer that failed our output validation - not for HTTP errors, HTML-error bodies,
+        // JSON parse failures, or thrown exceptions, where there was no LLM answer to call
+        // "invalid" in the next prompt.
+        var lastFailureWasValidation = false;
 
         for (int attempt = 1; attempt <= maxRetries; attempt++)
         {
             try
             {
-                var strictMode = attempt > 1;
+                var strictMode = lastFailureWasValidation;
+                lastFailureWasValidation = false;
                 var maxTokens = ComputeMaxTokens(request.SourceText);
 
                 var requestBody = new
@@ -135,6 +141,7 @@ public class BaseTranslationService : ITranslationService
                                 return new TranslationResponse(request.Key, string.Empty, false, reason);
                             }
 
+                            lastFailureWasValidation = true;
                             await Task.Delay(800);
                             continue;
                         }
@@ -277,14 +284,25 @@ Rules:
 Return only the translated string.{strictRules}";
     }
 
-    private static int ComputeMaxTokens(string sourceText)
+    private int ComputeMaxTokens(string sourceText)
     {
         if (string.IsNullOrEmpty(sourceText))
             return 220;
 
         // Approximate source tokens and allow expansion for longer target-language strings.
+        // Upper bound raised to 1800 so verbose expanding languages (German, Hungarian,
+        // Finnish, Russian, etc) do not get truncated mid-output on long sources - truncation
+        // would trip the placeholder-matching output check on retry and waste an attempt.
         var estimatedTokens = (int)Math.Ceiling((sourceText.Length / 4.0) * 2.0);
-        var bounded = Math.Clamp(estimatedTokens, 220, 900);
+        var bounded = Math.Clamp(estimatedTokens, 220, 1800);
+        if (bounded != estimatedTokens)
+        {
+            _logger.LogDebug(
+                "ComputeMaxTokens clamped estimate {Estimated} to {Bounded} for source length {Length}",
+                estimatedTokens,
+                bounded,
+                sourceText.Length);
+        }
         return bounded;
     }
 
