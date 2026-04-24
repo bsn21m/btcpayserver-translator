@@ -43,8 +43,8 @@ internal static class TranslationValidationRules
     private static readonly Regex[] LocalizedMetaPatterns =
     {
         // German
-        new(@"geben Sie den zu \u00fcbersetzenden", RegexOptions.Compiled),  // "provide the text to translate"
-        new(@"Bereit f\u00fcr die \u00dcbersetzung", RegexOptions.Compiled), // "Ready for translation"
+        new(@"geben Sie den zu \u00fcbersetzenden", RegexOptions.IgnoreCase | RegexOptions.Compiled),  // "provide the text to translate"
+        new(@"Bereit f\u00fcr die \u00dcbersetzung", RegexOptions.IgnoreCase | RegexOptions.Compiled), // "Ready for translation"
         new(@"ich kann .*\u00fcbersetzen", RegexOptions.IgnoreCase | RegexOptions.Compiled),
         new(@"(?:\u00fcbersetze|\u00fcbersetzen) .*englisch", RegexOptions.IgnoreCase | RegexOptions.Compiled),
         // Dutch

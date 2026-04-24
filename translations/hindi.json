@@ -2215,7 +2215,7 @@
   "Would you like to invite a new subscriber?": "क्या आप एक नए सदस्य को आमंत्रित करना चाहेंगे?",
   "Would you like to proceed with suspending the following user?": "क्या आप निम्नलिखित उपयोगकर्ता को निलंबित करना चाहेंगे?",
   "Would you like to upgrade <span class=\"subscriber-name fw-semibold\"></span> to <b class=\"changePlanName\"></b>?": "क्या आप <span class=\"subscriber-name fw-semibold\"></span> को <b class=\"changePlanName\"></b> में अपग्रेड करना चाहेंगे?",
-  "Yes": "मैं आपकी सहायता कैसे कर सकता/सकती हूं?",
+  "Yes": "हाँ",
   "You are not server administrator": "आप सर्वर प्रशासक नहीं हैं",
   "You are server administrator": "आप सर्वर प्रशासक हैं",
   "You can also apply filters to your search by searching for <code>filtername:value</code>. Be sure to split your search parameters with comma. Supported filters are:": "आप अपनी खोज में <code>filtername:value</code> के द्वारा फ़िल्टर भी लगा सकते हैं। अपने खोज मापदंडों को कॉमा से अलग करना सुनिश्चित करें। समर्थित फ़िल्टर हैं:",
