@@ -422,7 +422,10 @@ class Program
     {
         var fixOption = new Option<bool>(
             "--fix",
-            "Automatically fixes suspicious entries by restoring English fallback text or removing hotspot keys.");
+            "Automatically fixes suspicious entries by restoring English fallback text or removing hotspot keys.")
+        {
+            IsRequired = false
+        };
 
         var command = new Command(
             "validate-packs",

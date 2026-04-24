@@ -214,11 +214,6 @@ internal static class TranslationValidationRules
         return ShortKeyHotspotKeys.Contains(trimmed);
     }
 
-    public static string ResolveSentenceFallback(string source)
-    {
-        return source;
-    }
-
     public static bool HasMatchingPlaceholders(string source, string translation)
     {
         var sourceTokens = ExtractTokenCounts(source);

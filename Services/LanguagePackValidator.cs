@@ -49,29 +49,6 @@ public class LanguagePackValidator
             JObject json;
             var fileChanged = false;
 
-            void ApplyFix(JProperty property, string key, string currentValue, bool sentenceFallback = false)
-            {
-                if (TranslationValidationRules.IsShortKeyFallbackHotspot(key))
-                {
-                    property.Remove();
-                }
-                else
-                {
-                    var fallbackText = TranslationValidationRules.ResolveSentenceFallback(key);
-                    if (sentenceFallback && string.Equals(currentValue, fallbackText, StringComparison.Ordinal))
-                    {
-                        // Avoid a no-op for sentence fallbacks: remove the entry so runtime falls back cleanly.
-                        property.Remove();
-                    }
-                    else
-                    {
-                        property.Value = fallbackText;
-                    }
-                }
-
-                fileChanged = true;
-            }
-
             try
             {
                 var content = await File.ReadAllTextAsync(filePath);
@@ -103,7 +80,7 @@ public class LanguagePackValidator
                     issues.Add(new ValidationIssue(Path.GetFileName(filePath), key, "Suspicious LLM/meta-response content"));
                     if (fix)
                     {
-                        ApplyFix(property, key, value);
+                        fileChanged |= ApplyFix(property, key, value);
                     }
                     continue;
                 }
@@ -113,7 +90,7 @@ public class LanguagePackValidator
                     issues.Add(new ValidationIssue(Path.GetFileName(filePath), key, "Suspicious source fallback (sentence-like value equals source key)"));
                     if (fix)
                     {
-                        ApplyFix(property, key, value, sentenceFallback: true);
+                        fileChanged |= ApplyFix(property, key, value, sentenceFallback: true);
                     }
                     continue;
                 }
@@ -123,7 +100,7 @@ public class LanguagePackValidator
                     issues.Add(new ValidationIssue(Path.GetFileName(filePath), key, "Placeholder/token mismatch between source key and translation"));
                     if (fix)
                     {
-                        ApplyFix(property, key, value);
+                        fileChanged |= ApplyFix(property, key, value);
                     }
                     continue;
                 }
@@ -133,7 +110,7 @@ public class LanguagePackValidator
                     issues.Add(new ValidationIssue(Path.GetFileName(filePath), key, "Common UI label left untranslated (value equals English key)"));
                     if (fix)
                     {
-                        ApplyFix(property, key, value);
+                        fileChanged |= ApplyFix(property, key, value);
                     }
                 }
             }
@@ -146,5 +123,27 @@ public class LanguagePackValidator
         }
 
         return new ValidationResult(files.Count, totalEntries, issues);
+    }
+
+    // Applies a fix to a single contaminated JSON property.
+    // Returns true when the property was modified (removed or rewritten) so the caller
+    // can track whether the enclosing file needs to be rewritten.
+    private static bool ApplyFix(JProperty property, string key, string currentValue, bool sentenceFallback = false)
+    {
+        if (TranslationValidationRules.IsShortKeyFallbackHotspot(key))
+        {
+            property.Remove();
+            return true;
+        }
+
+        if (sentenceFallback && string.Equals(currentValue, key, StringComparison.Ordinal))
+        {
+            // Avoid a no-op for sentence fallbacks: remove the entry so runtime falls back cleanly.
+            property.Remove();
+            return true;
+        }
+
+        property.Value = key;
+        return true;
     }
 }
