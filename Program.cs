@@ -46,7 +46,8 @@ class Program
             CreateStatusCommand(serviceProvider),
             CreateUpdateCommand(serviceProvider),
             CreateBatchUpdateCommand(serviceProvider),
-            CreateUpdateAllCommand(serviceProvider)
+            CreateUpdateAllCommand(serviceProvider),
+            CreateValidatePacksCommand(serviceProvider)
         };
 
         return await rootCommand.InvokeAsync(args);
@@ -65,6 +66,7 @@ class Program
         services.AddTransient<TranslationExtractor>();
         services.AddTransient<FileWriter>();
         services.AddTransient<TranslationOrchestrator>();
+        services.AddTransient<LanguagePackValidator>();
 
         services.AddTransient<ITranslationService, BaseTranslationService>();
     }
@@ -121,7 +123,6 @@ class Program
             if (success)
             {
                 logger.LogInformation("Translation completed successfully!");
-                Environment.Exit(0);
             }
             else
             {
@@ -188,7 +189,10 @@ class Program
                 logger.LogInformation("  {Status} {Language}", status, result.Key);
             }
             
-            Environment.Exit(successCount == totalCount ? 0 : 1);
+            if (successCount < totalCount)
+            {
+                Environment.Exit(1);
+            }
         }, languagesOption, forceOption, continueOnErrorOption, btcpayUrlOption);
 
         return command;
@@ -288,7 +292,6 @@ class Program
             if (success)
             {
                 logger.LogInformation("Update completed successfully!");
-                Environment.Exit(0);
             }
             else
             {
@@ -350,7 +353,10 @@ class Program
                 logger.LogInformation("  {Status} {Language}", status, result.Key);
             }
             
-            Environment.Exit(successCount == totalCount ? 0 : 1);
+            if (successCount < totalCount)
+            {
+                Environment.Exit(1);
+            }
         }, languagesOption, continueOnErrorOption, btcpayUrlOption);
 
         return command;
@@ -403,8 +409,88 @@ class Program
                 logger.LogInformation("  {Status} {Language}", status, result.Key);
             }
             
-            Environment.Exit(successCount == totalCount ? 0 : 1);
+            if (successCount < totalCount)
+            {
+                Environment.Exit(1);
+            }
         }, continueOnErrorOption, btcpayUrlOption);
+
+        return command;
+    }
+
+    private static Command CreateValidatePacksCommand(ServiceProvider serviceProvider)
+    {
+        var fixOption = new Option<bool>(
+            "--fix",
+            "Automatically fixes suspicious entries by restoring English fallback text or removing hotspot keys.")
+        {
+            IsRequired = false
+        };
+
+        var command = new Command(
+            "validate-packs",
+            "Validate translation JSON files for suspicious LLM/meta responses and placeholder mismatches")
+        {
+            fixOption
+        };
+
+        command.SetHandler(async (fix) =>
+        {
+            using var scope = serviceProvider.CreateScope();
+            var validator = scope.ServiceProvider.GetRequiredService<LanguagePackValidator>();
+            var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+            logger.LogInformation("Validating translation packs (fix mode: {FixMode})", fix);
+            var result = await validator.ValidateAsync(fix);
+
+            if (fix)
+            {
+                // Fix passes are not strictly idempotent: a fix that removes one contamination
+                // can surface an adjacent contamination that was previously masked. Loop until
+                // a no-op pass (or an upper bound, to avoid pathological cycles).
+                const int maxFixPasses = 10;
+                var pass = 1;
+                while (result.Issues.Count > 0 && pass < maxFixPasses)
+                {
+                    pass++;
+                    logger.LogInformation(
+                        "Re-running with fix=true (pass {Pass} of up to {MaxPasses}) - {IssueCount} issues remain",
+                        pass, maxFixPasses, result.Issues.Count);
+                    result = await validator.ValidateAsync(true);
+                }
+
+                logger.LogInformation("Re-running validation after fixes");
+                result = await validator.ValidateAsync(false);
+
+                if (pass == maxFixPasses && result.Issues.Count > 0)
+                {
+                    logger.LogWarning(
+                        "--fix did not converge after {MaxPasses} passes. {RemainingCount} issue(s) remain and likely require manual review.",
+                        maxFixPasses, result.Issues.Count);
+                }
+            }
+
+            logger.LogInformation(
+                "Validation completed: {FilesScanned} files, {EntriesScanned} entries, {IssueCount} issues",
+                result.FilesScanned,
+                result.EntriesScanned,
+                result.Issues.Count);
+
+            if (result.Issues.Count > 0)
+            {
+                foreach (var issue in result.Issues.Take(200))
+                {
+                    logger.LogError("{File}: '{Key}' -> {Reason}", issue.FileName, issue.Key, issue.Reason);
+                }
+
+                if (result.Issues.Count > 200)
+                {
+                    logger.LogError("... {RemainingCount} more issue(s) omitted from log", result.Issues.Count - 200);
+                }
+
+                Environment.Exit(1);
+            }
+        }, fixOption);
 
         return command;
     }
