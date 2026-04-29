@@ -72,7 +72,7 @@ public class ManifestGenerator
         }
     }
 
-    private async Task<ManifestEntry> BuildEntry(string filePath)
+    private async Task<ManifestEntry> BuildEntry(string filePath,ManifestEntry? existingEntry)
     {
         try
         {
@@ -94,8 +94,8 @@ public class ManifestGenerator
             }
 
             var maintainer = GetMaintainer(filePath);
-
-            var updatedAt = GetUpdatedAt();
+            
+            var updatedAt = existingEntry?.Sha == hashedFile ? existingEntry!.Updated : GetUpdatedAt();
 
             var entry = new ManifestEntry(
                 Code: code,
@@ -121,6 +121,14 @@ public class ManifestGenerator
         try
         {
             _logger.LogInformation("Starting manifest generation");
+            
+            Manifest? existingManifest = null;
+            if (File.Exists(manifestOutputPath))
+            {
+                var existingJson = await File.ReadAllTextAsync(manifestOutputPath);
+                existingManifest = JsonSerializer.Deserialize<Manifest>(existingJson);
+            }
+            
             var files = GetTranslationFiles(translationDirectoryPath)?.ToArray();
             if (files == null || files.Length == 0)
             {
@@ -131,7 +139,10 @@ public class ManifestGenerator
             var entries = new List<ManifestEntry>();
             foreach (var file in files)
             {
-                var entry = await BuildEntry(file);
+                var existingEntry = existingManifest?.Languages
+                    .FirstOrDefault(e => e.File == "translations/" + Path.GetFileName(file));
+    
+                var entry = await BuildEntry(file, existingEntry);
                 entries.Add(entry);
             }
 
