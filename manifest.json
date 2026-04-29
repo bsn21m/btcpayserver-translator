@@ -1,0 +1,155 @@
+{
+  "Languages": [
+    {
+      "Code": "nl",
+      "Bcp47": "nl-NL",
+      "Name": "Dutch",
+      "Native": "Nederlands",
+      "File": "translations/dutch.json",
+      "Sha": "15732bf31bbd685c827bc3c063257a08fe13a5e43759ced8b9dbb86610cc5d9f",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "fr",
+      "Bcp47": "fr-FR",
+      "Name": "French",
+      "Native": "Français",
+      "File": "translations/french.json",
+      "Sha": "178695b65cabc42b2b714070fc6d2fa61c5152a7f3df1ea9cb403982de215bba",
+      "Maintainer": "teamssUTXO|https://github.com/teamssUTXO",
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "de",
+      "Bcp47": "de-DE",
+      "Name": "German",
+      "Native": "Deutsch",
+      "File": "translations/german.json",
+      "Sha": "eb79443d97409b662fdc81a4e77561251b37f80029dcdebb526776b7e3f3ace6",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "hi",
+      "Bcp47": "hi",
+      "Name": "Hindi",
+      "Native": "हिंदी",
+      "File": "translations/hindi.json",
+      "Sha": "7cde0c698cdc5069091c5c2020da37337ed8877b28dd0fd06192c8b7e4310c89",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "id",
+      "Bcp47": "id",
+      "Name": "Indonesian",
+      "Native": "Bahasa Indonesia",
+      "File": "translations/indonesian.json",
+      "Sha": "6aa4fb95524b2d3a4986cc7b2869720ca9ceeb17d2dce69aaffb05a159e66ded",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "it",
+      "Bcp47": "it-IT",
+      "Name": "Italian",
+      "Native": "Italiano",
+      "File": "translations/italian.json",
+      "Sha": "a6fc6cdfa7f46958b280c02e89a191aa1800f0b14e54ca008471a9f81d78200a",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "ja",
+      "Bcp47": "ja-JP",
+      "Name": "Japanese",
+      "Native": "日本語",
+      "File": "translations/japanese.json",
+      "Sha": "17adbe434456fb71310d8a2126e54d8fd8f457de22ce9d0449229a0493ee1828",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "ko",
+      "Bcp47": "ko",
+      "Name": "Korean",
+      "Native": "한국어",
+      "File": "translations/korean.json",
+      "Sha": "9d6b708b18281f431f8bda9a95186180d26d8dfa69aafcb7eef42bc5ccd22dc4",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "no",
+      "Bcp47": "no",
+      "Name": "Norwegian",
+      "Native": "Norsk",
+      "File": "translations/norwegian.json",
+      "Sha": "bdaac8ec8c72fae7cadf89bf7ed057b8381c072bb48f3422e3beaa9a2ca51c9b",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "pt",
+      "Bcp47": "pt-BR",
+      "Name": "Portuguese (Brazil)",
+      "Native": "Português (Brasil)",
+      "File": "translations/portuguese (brazil).json",
+      "Sha": "1f92cc96d131ba80e16af7afd3e03401e5551b818dd7bea4cfa3fd2fe85f1853",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "ru",
+      "Bcp47": "ru-RU",
+      "Name": "Russian",
+      "Native": "Русский",
+      "File": "translations/russian.json",
+      "Sha": "e4958413e12135f5cafbda837b5f6d43315a4d91bd5af6c0dc242ba6c1cd5324",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "sr",
+      "Bcp47": "sr",
+      "Name": "Serbian",
+      "Native": "Српски",
+      "File": "translations/serbian.json",
+      "Sha": "8ce8e4ee17cbdac5fb614eace3b1b0516a6b3cf526c871389a4e5be38c1a8285",
+      "Maintainer": "sanya|https://github.com/Sanja22B",
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "es",
+      "Bcp47": "es-ES",
+      "Name": "Spanish",
+      "Native": "Español",
+      "File": "translations/spanish.json",
+      "Sha": "d893d632547c5ba282e2ab1962b0b8be8c0f471125563ff274505dc983c1be82",
+      "Maintainer": "daxsosa|https://github.com/daxsosa",
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "th",
+      "Bcp47": "th-TH",
+      "Name": "Thai",
+      "Native": "ไทย",
+      "File": "translations/thai.json",
+      "Sha": "b45663be16a30878c6592994fd32899e69dfa2a3684c78b253563e956aa9768b",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    },
+    {
+      "Code": "tr",
+      "Bcp47": "tr",
+      "Name": "Turkish",
+      "Native": "Türkçe",
+      "File": "translations/turkish.json",
+      "Sha": "fd366933a297ea1bc654d05d9e93852d7857a6b306fad31dddf78dd5356a1ed9",
+      "Maintainer": null,
+      "Updated": "2026-04-29T21:26:25Z"
+    }
+  ],
+  "Redirect": null
+}
