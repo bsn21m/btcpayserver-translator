@@ -43,7 +43,7 @@ public class FileWriter
             };
 
             // Add all translations
-            foreach (var translation in translations.OrderBy(t => t.Key))
+            foreach (var translation in translations.OrderBy(t => t.Key, StringComparer.Ordinal))
             {
                 translationFile[translation.Key] = translation.Value;
             }
@@ -81,7 +81,7 @@ public class FileWriter
             var translationFile = new JObject();
 
             // Add all translations
-            foreach (var translation in translations.OrderBy(t => t.Key))
+            foreach (var translation in translations.OrderBy(t => t.Key, StringComparer.Ordinal))
             {
                 translationFile[translation.Key] = translation.Value;
             }
@@ -185,7 +185,7 @@ public class FileWriter
     }
 
     // Same comparer the writer uses for ordering (OrderBy(t => t.Key) -> Comparer<string>.Default).
-    private static readonly IComparer<string> WriterKeyComparer = Comparer<string>.Default;
+    private static readonly IComparer<string> WriterKeyComparer = StringComparer.Ordinal;
 
     private static readonly Regex TrailingCommaRegex = new(@",(\s*)$", RegexOptions.Compiled);
 
