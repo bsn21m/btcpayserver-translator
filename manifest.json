@@ -6,9 +6,9 @@
       "Name": "Dutch",
       "Native": "Nederlands",
       "File": "translations/dutch.json",
-      "Sha": "15732bf31bbd685c827bc3c063257a08fe13a5e43759ced8b9dbb86610cc5d9f",
+      "Sha": "6f4e7baff2c5418f2b502c3a09880f563bc4636a5a643a0efcfc26ef6a2f9624",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "fr",
@@ -16,9 +16,9 @@
       "Name": "French",
       "Native": "Français",
       "File": "translations/french.json",
-      "Sha": "2f7e4d3df7378cdc3c0e2218d1caf32704eab14559820bcbd7a8954a19f9e00c",
+      "Sha": "13527dce6e26bdd4bb4c9e1dd50732b572008a73feb8db4fc013594bb4de32fb",
       "Maintainer": "teamssUTXO|https://github.com/teamssUTXO",
-      "Updated": "2026-05-05T18:33:24Z"
+      "Updated": "2026-06-12T09:02:11Z"
     },
     {
       "Code": "de",
@@ -36,9 +36,9 @@
       "Name": "Hindi",
       "Native": "हिंदी",
       "File": "translations/hindi.json",
-      "Sha": "7cde0c698cdc5069091c5c2020da37337ed8877b28dd0fd06192c8b7e4310c89",
+      "Sha": "83c355febf165d614e8a04634975acbb77d0c453709a287a70602e6f2acdbd4f",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "id",
@@ -46,9 +46,9 @@
       "Name": "Indonesian",
       "Native": "Bahasa Indonesia",
       "File": "translations/indonesian.json",
-      "Sha": "6aa4fb95524b2d3a4986cc7b2869720ca9ceeb17d2dce69aaffb05a159e66ded",
+      "Sha": "b425358397c804bb54c9f3ea040bb8f1f3a90f1ad6ea24f1c22b8badc017c7f7",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "it",
@@ -56,9 +56,9 @@
       "Name": "Italian",
       "Native": "Italiano",
       "File": "translations/italian.json",
-      "Sha": "a6fc6cdfa7f46958b280c02e89a191aa1800f0b14e54ca008471a9f81d78200a",
+      "Sha": "b145aa858b139c2739e3cbb341936c3949638baac01cca2d9f29ba04ca01c00e",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "ja",
@@ -66,9 +66,9 @@
       "Name": "Japanese",
       "Native": "日本語",
       "File": "translations/japanese.json",
-      "Sha": "17adbe434456fb71310d8a2126e54d8fd8f457de22ce9d0449229a0493ee1828",
+      "Sha": "825437fd1bde43fe3c44ee19510651ce3a4a843aa0d07be782ea153d74ac2ead",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "ko",
@@ -76,9 +76,9 @@
       "Name": "Korean",
       "Native": "한국어",
       "File": "translations/korean.json",
-      "Sha": "9d6b708b18281f431f8bda9a95186180d26d8dfa69aafcb7eef42bc5ccd22dc4",
+      "Sha": "d5ab903bb52210e6468ab8a102fe76d6ba605df95e27b8ffc8a2e8f7377c54b1",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "no",
@@ -86,9 +86,9 @@
       "Name": "Norwegian",
       "Native": "Norsk",
       "File": "translations/norwegian.json",
-      "Sha": "bdaac8ec8c72fae7cadf89bf7ed057b8381c072bb48f3422e3beaa9a2ca51c9b",
+      "Sha": "e67f1afb1bbcd30aab949c950f66efd94d88ba9a4e20ecefd1e924cda760d008",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "pt",
@@ -96,9 +96,9 @@
       "Name": "Portuguese (Brazil)",
       "Native": "Português (Brasil)",
       "File": "translations/portuguese (brazil).json",
-      "Sha": "470148039b8770f2168db8b078f9a35796a55142e1382b1b0f7de53b1e8e6a80",
+      "Sha": "70ab09c859bf6db217ecdc65f8e6508cc7492bbfefcb55c48af560de6b2b95e5",
       "Maintainer": "thgO-O|https://github.com/thgO-O",
-      "Updated": "2026-05-01T08:45:19Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "ro",
@@ -106,9 +106,9 @@
       "Name": "Romanian",
       "Native": "Română",
       "File": "translations/romanian.json",
-      "Sha": "a91be01bdc78cf9c75abbbba478c5af2a236d054dd5b1162face2a8194edebf8",
+      "Sha": "bc609973f8ef6b1348b9bc828a3140c295869103d3141b4f2b01b3ac4645bd08",
       "Maintainer": null,
-      "Updated": "2026-05-21T19:25:46Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "ru",
@@ -116,9 +116,9 @@
       "Name": "Russian",
       "Native": "Русский",
       "File": "translations/russian.json",
-      "Sha": "e4958413e12135f5cafbda837b5f6d43315a4d91bd5af6c0dc242ba6c1cd5324",
+      "Sha": "615986a9b8d43be52791ef2570ee230ce01d63d6105d0d8426674721eb2f82b8",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "sr",
@@ -126,9 +126,9 @@
       "Name": "Serbian",
       "Native": "Српски",
       "File": "translations/serbian.json",
-      "Sha": "5d8ca11d3fddf2f2d9ee90c9b6e4b062e536423bc941bab6476109a117378df9",
+      "Sha": "9bc7e70880419e0700b91091254c92f558d40c23aa90a217c942f3ab8da07eb8",
       "Maintainer": "sanya|https://github.com/Sanja22B",
-      "Updated": "2026-05-01T10:26:45Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "es",
@@ -136,9 +136,9 @@
       "Name": "Spanish",
       "Native": "Español",
       "File": "translations/spanish.json",
-      "Sha": "d893d632547c5ba282e2ab1962b0b8be8c0f471125563ff274505dc983c1be82",
+      "Sha": "4f85a3d67fe53cbd4771d2e5cf5967b5af21ec0588ff914721b91276c2e8f0a6",
       "Maintainer": "daxsosa|https://github.com/daxsosa",
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-10T23:17:53Z"
     },
     {
       "Code": "th",
@@ -146,9 +146,9 @@
       "Name": "Thai",
       "Native": "ไทย",
       "File": "translations/thai.json",
-      "Sha": "b45663be16a30878c6592994fd32899e69dfa2a3684c78b253563e956aa9768b",
+      "Sha": "9b1119d21c5d479a633963927360700547084ba7379330f5a285d2a5305f975f",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     },
     {
       "Code": "tr",
@@ -156,9 +156,9 @@
       "Name": "Turkish",
       "Native": "Türkçe",
       "File": "translations/turkish.json",
-      "Sha": "fd366933a297ea1bc654d05d9e93852d7857a6b306fad31dddf78dd5356a1ed9",
+      "Sha": "432ba6688ddef9a1952163f0be417eda3002fc782461fc963ff07d80c79f113b",
       "Maintainer": null,
-      "Updated": "2026-04-29T21:26:25Z"
+      "Updated": "2026-06-09T15:32:50Z"
     }
   ],
   "Redirect": null

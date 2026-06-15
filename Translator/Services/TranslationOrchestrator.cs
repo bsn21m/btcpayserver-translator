@@ -565,4 +565,83 @@ public class TranslationOrchestrator
         }
     }
 
+    /// <summary>
+    /// Inserts newly-added English source keys into existing translation files as English placeholders,
+    /// without translating and without removing any keys. Existing entries are preserved byte-for-byte.
+    /// </summary>
+    /// <param name="languageCodes">Optional filter; null/empty refreshes every discovered file.</param>
+    public async Task<RefreshResult> RefreshKeysAsync(IEnumerable<string>? languageCodes = null)
+    {
+        var addedByFile = new Dictionary<string, int>();
+
+        var outputDir = _configuration["Translation:OutputDirectory"] ?? "translations";
+        if (!Directory.Exists(outputDir))
+        {
+            _logger.LogError("Translation directory not found: {OutputDir}", outputDir);
+            return new RefreshResult(0, 0, 0, addedByFile);
+        }
+
+        var filterCodes = languageCodes is null
+            ? null
+            : languageCodes
+                .Where(c => !string.IsNullOrWhiteSpace(c))
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        if (filterCodes is { Count: 0 })
+            filterCodes = null;
+
+        var sourceTranslations = await GetSourceTranslationsAsync();
+        _logger.LogInformation("Found {Count} strings in source", sourceTranslations.Count);
+
+        var translationFiles = Directory.GetFiles(outputDir, "*.json")
+            .Where(p => !p.EndsWith(".report.json", StringComparison.OrdinalIgnoreCase))
+            .OrderBy(p => p)
+            .ToList();
+
+        var processed = 0;
+        var skipped = 0;
+        var totalAdded = 0;
+
+        foreach (var filePath in translationFiles)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(filePath);
+            var match = SupportedLanguages.GetLanguageInfoByName(fileName);
+            if (match is null)
+            {
+                _logger.LogWarning("  - {FileName} -> Unknown language, skipping", fileName);
+                skipped++;
+                continue;
+            }
+
+            var (code, _) = match.Value;
+            if (filterCodes != null && !filterCodes.Contains(code))
+                continue;
+            
+            try
+            {
+                var added = await _fileWriter.InsertMissingKeysAsync(filePath, sourceTranslations);
+                addedByFile[Path.GetFileName(filePath)] = added;
+                totalAdded += added;
+                processed++;
+                _logger.LogInformation("  {FileName}: +{Added}", Path.GetFileName(filePath), added);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "  {FileName}: failed to insert missing keys", Path.GetFileName(filePath));
+                skipped++;
+            }
+        }
+
+        _logger.LogInformation(
+            "refresh-keys completed: {TotalAdded} key(s) added across {Processed} file(s) ({Skipped} skipped)",
+            totalAdded, processed, skipped);
+
+        return new RefreshResult(processed, skipped, totalAdded, addedByFile);
+    }
+
 }
+
+public sealed record RefreshResult(
+    int FilesProcessed,
+    int FilesSkipped,
+    int TotalKeysAdded,
+    IReadOnlyDictionary<string, int> AddedByFile);

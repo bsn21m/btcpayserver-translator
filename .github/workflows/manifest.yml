@@ -13,6 +13,7 @@ permissions:
 jobs:
   manifest-generation:
     runs-on: ubuntu-latest
+    if: github.repository == 'btcpayserver/btcpayserver-translator'
     env:
       CI: true
       
@@ -37,6 +38,6 @@ jobs:
         with:
           default_author: github_actor
           add: ./manifest.json # if the working directory is the repo root dir
-          message: "Update manifest.json"
+          message: "ci: update manifest.json"
           commit: ""
           push: true
