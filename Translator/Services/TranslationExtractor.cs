@@ -43,6 +43,7 @@ public class TranslationExtractor
                 _logger.LogInformation("Fetching translations from BTCPay Server at {Url}", url);
                 var client = new HttpClient(handler);
                 response = await client.GetAsync(url);
+                client.Dispose();
             }
             else
             {
@@ -72,6 +73,10 @@ public class TranslationExtractor
 
             _logger.LogInformation("Fetched {Count} translations from BTCPay Server", translations.Count);
             return translations;
+        }
+        catch(UriFormatException e)
+        {
+            throw new InvalidOperationException($"Malformed URL: {url}\nError: {e.Message}", e);
         }
         catch (HttpRequestException ex)
         {
