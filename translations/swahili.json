@@ -2529,7 +2529,7 @@
   "Use the internal lightning node": "Tumia nodi ya ndani ya Lightning",
   "View payouts in selected stores": "Tazama malipo ya kutoa katika maduka yaliyochaguliwa",
   "Allows viewing payment requests.": "Huruhusu kutazama maombi ya malipo.",
-  "Configure Passkey Authentication": "Sanidi Uthibitishaji wa Passkey",
+  "Configure Passkey Authentication": "Sanidi Uthibitishaji wa Ufunguo wa Kupita",
   "Configure store's email settings": "Sanidi mipangilio ya barua pepe ya duka",
   "Manage the notification settings": "Simamia mipangilio ya arifa",
   "Modify selected stores' webhooks": "Rekebisha webhooks za maduka yaliyochaguliwa",
